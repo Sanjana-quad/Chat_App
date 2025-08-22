@@ -1,8 +1,19 @@
 #include <iostream>
 #include <thread>
+#include <string>
+
+#ifdef _WIN32
+#include <winsock2.h>
+#include <ws2tcpip.h>
+#include <windows.h>
+#pragma comment(lib, "ws2_32.lib") // Link against WinSock
+#else
 #include <unistd.h>
 #include <netinet/in.h>
+#include <sys/socket.h>
 #include <arpa/inet.h>
+#endif
+
 
 void receive_msgs(int sock_fd) {
     char buffer[1024];
@@ -25,5 +36,5 @@ int main() {
         std::getline(std::cin, input);
         send(sock_fd, input.c_str(), input.length(), 0);
     }
-    close(sock_fd);
+    closesocket(sock_fd);
 }
