@@ -1,4 +1,4 @@
-# C++ Chat Application
+# C++ Chat Application.
 
 Modern C++ chat app using socket programming and multi-threading.
 - Multi-client support
